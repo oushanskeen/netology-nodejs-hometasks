@@ -1,0 +1,17 @@
+{
+  "name": "loveyourtime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "loveyourtime": "loveyourtime.js"
+  },
+  "dependencies": {
+    "yargs": "^16.1.1"
+  }
+}
