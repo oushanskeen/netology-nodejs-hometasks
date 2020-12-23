@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-     "dev":"node -r dotenv/config index.js"
+    "dev": "nodemon -r dotenv/config index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6"
   },
   "devDependencies": {
     "dotenv": "^8.2.0"
