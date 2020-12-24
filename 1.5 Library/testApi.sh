@@ -1,61 +1,49 @@
 #! /bin/bash
 
 echo "Hello World"
-URL="http://localhost:3030/api"
+URL="http://localhost:3030/api/books"
 
-simpleGet(){
-  actor1=$1
-  actor2=$2
-  curl "$URL/$actor1/$actor2"
+getAll(){
+  curl "$URL"
 }
-
-simplePost(){
-  actor=$1
+getOne(){
+  curl "$URL/1"
+}
+post(){
   curl -X POST \
     -H "Content-type: application/json" \
-    "$URL/$actor"
+    --data '{"content":"pineappletrees"}'
+    "$URL"
 }
-simpleDelete(){
-  actor=$1
-  curl -X DELETE \
-    -H "Content-type: application/json" \
-    --data '{"id":"0"}' \
-    "$URL/$actor"
-}
-simplePut(){
-  actor=$1
-  actor=$2
+put(){
   curl -X PUT \
     -H "Content-type: application/json" \
-    --data '{"id":"1","content":"ups and downs"}' \
-    "$URL/$actor1/1"
+    --data '{"content":"ups and downs"}' \
+    "$URL/4"
 };
-
-restCalls(){
-  actor=$1
-  printf "\n$actor GET\n"
-  simpleGet "$actor"
-  printf "\n"
-  printf "\n$actor GET 1st book\n"
-  simpleGet "$actor" 1
-  printf "\n"
-  printf "\n$actor GET 4th book\n"
-  simpleGet "$actor" 4
-  printf "\n"
-  printf "\n$actor POST\n"
-  simplePost "$actor"
-  printf "\n"
-  printf "\n$actor PUT\n"
-  simplePut "$actor" 1
-  printf "\n"
-  printf "\n$actor DELETE\n"
-  simpleDelete "$actor"
-  printf "\n"
- # printf "\ndogovors GET\n"
- # simpleGet "$actor"
- # printf "\n"
- # printf "\n"
+delete(){
+  =
+  curl -X DELETE \
+    -H "Content-type: application/json" \
+    "$URL/4"
 }
 
-restCalls "books"
+calls(){
+  printf "\n GET ALL\n"
+  getAll
+  printf "\n"
+  printf "\$ GET ONE \n"
+  getOne
+  printf "\n"
+  printf "\n POST\n"
+  post 
+  printf "\n"
+  printf "\n PUT\n"
+  put
+  printf "\n"
+  delete
+  printf "\n"
+}
+
+calls 
 #restCalls "dogovors"

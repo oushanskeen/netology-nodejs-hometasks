@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title> library </title>
+  </head>
+  <body>
+    <!-- single file -->
+    <form action="/uploadfile" enctype="multipart/form-data" method="POST">
+      <input type="file" name="singleFile" />
+      <input type="submit" value="Upload a file"/>
+    </form>
+    <!-- multipart file -->
+    <form action="/uploadfiles" enctype="multipart/form-data" method="POST">
+      Select files: <input type="file" name="multipleFiles" multiple/>
+      <input type="submit" value="Upload files"/>
+    </form>
+    <!-- photos  -->
+    <form action="/upload/photo" enctype="multipart/form-data" method="POST">
+      <input type="file" name="images" />
+      <input type="submit" value="Upload a photo"/>
+    </form>
+  </body>
+</html>
