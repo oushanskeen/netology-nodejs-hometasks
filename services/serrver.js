@@ -13,9 +13,8 @@ app.use(bodyParser.json({ extended: true }));
 app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "./public")));
-  
+
 const books = ["book one","book two","book three","book four"]
-/*
 app.get("/index", (req, res) => {
   //res.render("index.ejs",{books:books});
   res.render("index.ejs",{books:books});
@@ -23,14 +22,13 @@ app.get("/index", (req, res) => {
 app.get("/view", (req, res) => {
   res.render("view.ejs",{book:"single book"});
 });
-*/
 app.get("/create", (req, res) => {
   res.render("create.ejs");
 });
 app.get("/update", (req, res) => {
   res.render("update.ejs",{book:"book from outside"});
 });
-  
+
 // set storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -62,7 +60,6 @@ app.use("/api/user/login", userRouter);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
 */
-const PORT = process.env.PORT || 3031;
 http
   .createServer(app)
-  .listen(PORT, () => console.log(`Library server is started on port: ${PORT}.`));
+  .listen(3030, () => console.log("Library server is started."));

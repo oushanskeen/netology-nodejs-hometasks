@@ -1,0 +1,19 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "content": "apples",
+      "count": 12
+    },
+    {
+      "id": "2",
+      "content": "bananas",
+      "count": 0
+    },
+    {
+      "id": "3",
+      "content": "cucumbers",
+      "count": 1
+    }
+  ]
+}

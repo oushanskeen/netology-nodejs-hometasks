@@ -12,7 +12,7 @@ getOne(){
 post(){
   curl -X POST \
     -H "Content-type: application/json" \
-    --data '{"content":"pineappletrees"}'
+    --data '{"content":"pineappletrees"}'\
     "$URL"
 }
 put(){
@@ -22,10 +22,8 @@ put(){
     "$URL/4"
 };
 delete(){
-  =
   curl -X DELETE \
-    -H "Content-type: application/json" \
-    "$URL/4"
+    "$URL/9"
 }
 
 calls(){
