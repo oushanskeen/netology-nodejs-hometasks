@@ -48,7 +48,7 @@ app.post("/api/books",(req,res) => {
     const dbBooksNew = db.get("books").value();
   res.json(newLib);
 });
-router.put("/api/books/:id",(req,res) => {
+app.put("/api/books/:id",(req,res) => {
   const dbBooks = db.get("books").value();
   const bookYouNeed = dbBooks.filter(e => e.id === req.params.id)[0];
   const newBook = { id: req.params.id, ...req.body };
@@ -65,7 +65,7 @@ router.put("/api/books/:id",(req,res) => {
       res.json(newBook);
   })();
 });
-router.delete("/api/books/:id",(req,res) => {
+app.delete("/api/books/:id",(req,res) => {
   const dbBooks = db.get("books").value();
   db.get("books")
     .remove({ id: req.params.id })
