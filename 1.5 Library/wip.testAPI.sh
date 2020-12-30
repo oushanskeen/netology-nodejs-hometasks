@@ -1,7 +1,7 @@
 #! /bin/bash
 
 echo "Hello World"
-URL="http://localhost:3030/api/books"
+URL="http://localhost:3031/api/books"
 
 getAll(){
   curl "$URL"

@@ -2,11 +2,13 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const http = require("http");
+const router = express.Router();
 const bodyParser = require("body-parser");
-const booksRouter = require("./routes/books");
-const userRouter = require("./routes/user");
-const multer = require("multer");
-//onst upload = multer({dest:"uploads/"});
+
+const lowdb = require("lowdb");
+const FileSync = require("lowdb/adapters/FileSync");
+const adapter = new FileSync("db.json");
+const db = lowdb(adapter);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
@@ -14,54 +16,64 @@ app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "./public")));
   
-const books = ["book one","book two","book three","book four"]
-/*
-app.get("/index", (req, res) => {
-  //res.render("index.ejs",{books:books});
-  res.render("index.ejs",{books:books});
+app.post("/api/user/login",(req,res) => {
+  console.log("post api user login");
+  res.json({id:1,mail:"test@mail.ru"});
 });
-app.get("/view", (req, res) => {
-  res.render("view.ejs",{book:"single book"});
+app.get("/api/books",(req,res) => {
+  const x = db.get("books").value();
+  res.json(x);
 });
-*/
-app.get("/create", (req, res) => {
-  res.render("create.ejs");
+app.get("/api/books/:id",(req,res) => {
+  const { id } = req.params;
+  const book = db
+    .get("books")
+    .find({ id: id })
+    .value();
+  book === undefined
+  ? (() => {
+      res.status(404);
+      res.send("Not found!");
+    })()
+  : res.json(book);
 });
-app.get("/update", (req, res) => {
-  res.render("update.ejs",{book:"book from outside"});
+app.post("/api/books",(req,res) => {
+  const dbBooks = db.get("books").value();
+  const newId = `${+dbBooks.slice(-1)[0].id + 1}`;
+  const newBook = { id: newId, ...req.body };
+  const newLib = [...dbBooks, { ...newBook }];
+    db.get("books")
+      .push(newBook)
+      .write();
+    const dbBooksNew = db.get("books").value();
+  res.json(newLib);
 });
-  
-// set storage
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads");
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.fieldname + "-" + Date.now());
-  }
+router.put("/api/books/:id",(req,res) => {
+  const dbBooks = db.get("books").value();
+  const bookYouNeed = dbBooks.filter(e => e.id === req.params.id)[0];
+  const newBook = { id: req.params.id, ...req.body };
+  db.get("books")
+    .find({ id: req.params.id })
+    .assign({ content: req.body.content })
+    .write();
+  bookYouNeed === undefined
+    ? (() => {
+        res.status(404);
+        res.send("Nothing to change!");
+      })()
+    : (() => {
+      res.json(newBook);
+  })();
 });
-const upload = multer({ storage: storage });
+router.delete("/api/books/:id",(req,res) => {
+  const dbBooks = db.get("books").value();
+  db.get("books")
+    .remove({ id: req.params.id })
+    .write();
+    res.end("Ok");
+});
 
-app.post("/uploadfile", upload.single("singleFile"),(req,res,next) => {
-  const file = req.file;
-  if (!file){
-    const error = new Error("Please upload a file");
-    error.httpStatusCode = 400;
-    return next(error)
-  }
-  res.send(file);
-});
 
-booksRouter(app);
-userRouter(app);
-/*
-app.use("/api/books", booksRouter);
-app.use("/api/books/:id", booksRouter);
-app.use("/api/user/login", userRouter);
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json({ extended: true }));
-*/
 const PORT = process.env.PORT || 3031;
 http
   .createServer(app)
