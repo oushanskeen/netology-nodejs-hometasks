@@ -15,66 +15,75 @@ app.use(bodyParser.json({ extended: true }));
 app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "./public")));
-  
-app.post("/api/user/login",(req,res) => {
-  console.log("post api user login");
-  res.json({id:1,mail:"test@mail.ru"});
-});
-app.get("/api/books",(req,res) => {
-  const x = db.get("books").value();
-  res.json(x);
-});
-app.get("/api/books/:id",(req,res) => {
-  const { id } = req.params;
-  const book = db
+
+// db methods
+const getBooks = () => db.get("books").value();
+const postUser = payload =>
+  db
+    .get("users")
+    .push({ ...payload })
+    .write();
+const getUser = id =>
+  db
+    .get("users")
+    .find({ id: id })
+    .value();
+const getBook = id =>
+  db
     .get("books")
     .find({ id: id })
     .value();
-  book === undefined
-  ? (() => {
-      res.status(404);
-      res.send("Not found!");
-    })()
-  : res.json(book);
+const addBook = book =>
+  db
+    .get("books")
+    .push(book)
+    .write();
+const putBook = (id, payload) =>
+  db
+    .get("books")
+    .find({ id: id })
+    .assign({ content: payload })
+    .write();
+const deleteBook = id =>
+  db
+    .get("books")
+    .remove({ id: id })
+    .write();
+
+// api calls
+app.post("/api/user/login", (req, res) => {
+  postUser(req.body);
+  res.status(201).json(getUser(req.body.id));
 });
-app.post("/api/books",(req,res) => {
-  const dbBooks = db.get("books").value();
+app.get("/api/books", (req, res) => res.json(getBooks()));
+app.get("/api/books/:id", (req, res) => {
+  const book = getBook(req.params.id);
+  book === undefined ? res.status(404).send("Not found!") : res.json(book);
+});
+app.post("/api/books", (req, res) => {
+  const dbBooks = getBooks();
   const newId = `${+dbBooks.slice(-1)[0].id + 1}`;
   const newBook = { id: newId, ...req.body };
   const newLib = [...dbBooks, { ...newBook }];
-    db.get("books")
-      .push(newBook)
-      .write();
-    const dbBooksNew = db.get("books").value();
-  res.json(newLib);
+  addBook(newBook);
+  res.json(getBook(newId));
 });
-app.put("/api/books/:id",(req,res) => {
-  const dbBooks = db.get("books").value();
-  const bookYouNeed = dbBooks.filter(e => e.id === req.params.id)[0];
+app.put("/api/books/:id", (req, res) => {
+  const bookYouNeed = getBooks().filter(e => e.id === req.params.id)[0];
   const newBook = { id: req.params.id, ...req.body };
-  db.get("books")
-    .find({ id: req.params.id })
-    .assign({ content: req.body.content })
-    .write();
+  putBook(req.params.id, req.body.content);
   bookYouNeed === undefined
-    ? (() => {
-        res.status(404);
-        res.send("Nothing to change!");
-      })()
-    : (() => {
-      res.json(newBook);
-  })();
+    ? res.status(404).send("Nothing to change!")
+    : res.json(getBook(req.params.id));
 });
-app.delete("/api/books/:id",(req,res) => {
-  const dbBooks = db.get("books").value();
-  db.get("books")
-    .remove({ id: req.params.id })
-    .write();
-    res.end("Ok");
+app.delete("/api/books/:id", (req, res) => {
+  deleteBook(req.params.id);
+  res.end("Ok");
 });
-
 
 const PORT = process.env.PORT || 3031;
 http
   .createServer(app)
-  .listen(PORT, () => console.log(`Library server is started on port: ${PORT}.`));
+  .listen(PORT, () =>
+    console.log(`Library server is started on port: ${PORT}.`)
+  );
