@@ -1,220 +1,46 @@
 {
   "books": [
     {
-      "id": "1",
-      "content": "ups and downs"
-    },
-    {
-      "id": "2",
-      "content": "bananas"
-    },
-    {
-      "id": "3",
-      "content": "cucumbers"
-    },
-    {
-      "id": "4",
-      "content": "ups and downs"
-    },
-    {
-      "id": "5",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "6",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "7",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "8",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "10",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "11",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "12",
-      "addbook": "addbookwww"
-    },
-    {
-      "id": "13",
-      "addbook": "addbookwww"
-    },
-    {
-      "id": "14",
-      "addbook": "addbookwww"
-    },
-    {
-      "id": "15",
-      "addbook": "addbookwww"
-    },
-    {
-      "id": "16",
-      "addbook": "addbookwww"
-    },
-    {
       "id": "17",
-      "content": "addbook"
+      "title": "",
+      "description": "",
+      "authors": "",
+      "favorite": "",
+      "fileCover": "",
+      "fileName": "",
+      "fileBook": ""
     },
     {
       "id": "18",
-      "content": "qqqqqqq"
+      "title": "",
+      "description": "",
+      "authors": "",
+      "favorite": "",
+      "fileCover": "",
+      "fileName": "",
+      "fileBook": ""
     },
     {
       "id": "19",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "20",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "21",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "22",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "1",
-      "mail": "test@mail.ru"
-    },
-    {
-      "id": "2",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "1",
-      "mail": "test@mail.ru"
-    },
-    {
-      "id": "2",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "1",
-      "mail": "test@mail.ru"
-    },
-    {
-      "id": "2",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "3",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "1",
-      "mail": "test@mail.ru"
-    },
-    {
-      "id": "2",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "3",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "4",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "1",
-      "mail": "test@mail.ru"
-    },
-    {
-      "id": "2",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "3",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "4",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "5",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "6",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "7",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "8",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "1",
-      "mail": "test@mail.ru"
-    },
-    {
-      "id": "1",
-      "mail": "test@mail.ru"
-    },
-    {
-      "id": "1",
-      "mail": "test@mail.ru"
-    },
-    {
-      "id": "1",
-      "mail": "test@mail.ru"
-    },
-    {
-      "id": "1",
-      "mail": "test@mail.ru"
-    },
-    {
-      "id": "2",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "3",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "4",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "5",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "6",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "7",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "8",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "10",
-      "content": "pineappletrees"
-    },
-    {
-      "id": "11",
-      "content": "pineappletrees"
+      "metaInfo": {
+        "title": "",
+        "description": "",
+        "authors": "",
+        "favorite": "",
+        "fileCover": "",
+        "fileName": "",
+        "fileBook": ""
+      },
+      "fileInfo": {
+        "fieldname": "bookFile",
+        "originalname": "sample.txt",
+        "encoding": "7bit",
+        "mimetype": "text/plain",
+        "destination": "uploads/",
+        "filename": "c91a934ed5889c0372660def43c85c06",
+        "path": "uploads/c91a934ed5889c0372660def43c85c06",
+        "size": 21
+      }
     }
   ]
 }

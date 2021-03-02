@@ -1,7 +1,16 @@
 <div>
-  <form action="http://localhost:3030/api/books" method="POST">
-  me update
-    <input name="content" value=""/>
-    <button>add new book</button>
+  <form action="/api/book" method="post" enctype="multipart/form-data">
+    <div>
+      <label>Add book</label><br/>
+      <input type="text" name="title" placeholder="title"/><br/>
+      <input type="text" name="description" placeholder="description"/><br/>
+      <input type="text" name="authors" placeholder="authors"/><br/>
+      <input type="text" name="favorite" placeholder="favorite"/><br/>
+      <input type="text" name="fileCover" placeholder="fileCover"/><br/>
+      <input type="text" name="fileName" placeholder="fileName"/><br/>
+      <input type="text" name="fileBook" placeholder="fileBook"/><br/>
+      <input type="file" id="bookFile" name="bookFile"/>
+    </div>
+    <button>Submit</button>
   </form>
 </div>
